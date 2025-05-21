@@ -35,7 +35,7 @@ public partial class Main : Control
 	// public int s;
 
 	// Called when the node enters the scene tree for the first time.
-
+	private Godot.Collections.Array<int> mang_random = new Godot.Collections.Array<int> { 0, 1, 2, 3, 4 };
 	private System.Collections.Generic.List<string> offspring1 = new System.Collections.Generic.List<string> { };
 	private float offspring1Weight = 0;
 
@@ -46,7 +46,7 @@ public partial class Main : Control
 		// int s = GetNode<GridContainer>("NinePatchRect/GridContainer").Columns;
 		using (var context = new DataContext())
 		{
-			context.Database.EnsureDeleted();
+			// context.Database.EnsureDeleted();
 			context.Database.EnsureCreated();
 		}
 
@@ -100,8 +100,9 @@ public partial class Main : Control
 			Random parent2_random = new Random();
 
 			//lay cha me
-			var parent1 = lay_cha_me[parent1_random.Next(0, 5)];
-			var parent2 = lay_cha_me[parent2_random.Next(0, 5)];
+			mang_random.Shuffle();
+			var parent1 = lay_cha_me[mang_random[0]];
+			var parent2 = lay_cha_me[mang_random[1]];
 
 
 
