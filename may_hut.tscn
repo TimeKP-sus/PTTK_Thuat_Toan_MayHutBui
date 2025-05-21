@@ -1,0 +1,167 @@
+[gd_scene load_steps=5 format=3 uid="uid://du2cvmepjbljk"]
+
+[ext_resource type="Texture2D" uid="uid://boe43dl7rv525" path="res://icon.svg" id="1_5on1q"]
+[ext_resource type="Script" uid="uid://ddc1oxgyp21lm" path="res://Mono/MayHut.cs" id="1_sg1n3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg1n3"]
+size = Vector2(16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sg1n3"]
+font_size = 14
+font_color = Color(0.000693898, 0.000693898, 0.000693898, 1)
+
+[node name="mayhut" type="CharacterBody2D"]
+script = ExtResource("1_sg1n3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(40, 40)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5on1q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_sg1n3")
+
+[node name="qlcambien" type="Node2D" parent="."]
+
+[node name="0" type="RayCast2D" parent="qlcambien"]
+position = Vector2(80, 40)
+target_position = Vector2(56, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label" type="Label" parent="qlcambien/0"]
+offset_left = 64.0
+offset_top = -16.0
+offset_right = 128.0
+offset_bottom = 15.0
+label_settings = SubResource("LabelSettings_sg1n3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="qlcambien/0"]
+
+[node name="3" type="RayCast2D" parent="qlcambien"]
+position = Vector2(40, 72)
+target_position = Vector2(0, 48)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label" type="Label" parent="qlcambien/3"]
+offset_left = -32.0
+offset_top = 56.0
+offset_right = 32.0
+offset_bottom = 87.0
+label_settings = SubResource("LabelSettings_sg1n3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="qlcambien/3"]
+
+[node name="7" type="RayCast2D" parent="qlcambien"]
+position = Vector2(64, 72)
+target_position = Vector2(56, 48)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label" type="Label" parent="qlcambien/7"]
+offset_left = 32.0
+offset_top = 56.0
+offset_right = 96.0
+offset_bottom = 87.0
+label_settings = SubResource("LabelSettings_sg1n3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="qlcambien/7"]
+
+[node name="5" type="RayCast2D" parent="qlcambien"]
+position = Vector2(16, 72)
+target_position = Vector2(-56, 48)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label" type="Label" parent="qlcambien/5"]
+offset_left = -96.0
+offset_top = 56.0
+offset_right = -32.0
+offset_bottom = 87.0
+label_settings = SubResource("LabelSettings_sg1n3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2D" type="Line2D" parent="qlcambien/5"]
+
+[node name="1" type="RayCast2D" parent="qlcambien"]
+position = Vector2(0, 40)
+target_position = Vector2(-56, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label" type="Label" parent="qlcambien/1"]
+offset_left = -136.0
+offset_top = -16.0
+offset_right = -72.0
+offset_bottom = 15.0
+label_settings = SubResource("LabelSettings_sg1n3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="qlcambien/1"]
+
+[node name="2" type="RayCast2D" parent="qlcambien"]
+position = Vector2(40, 8)
+target_position = Vector2(0, -48)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label" type="Label" parent="qlcambien/2"]
+offset_left = -32.0
+offset_top = -88.0
+offset_right = 32.0
+offset_bottom = -56.0
+label_settings = SubResource("LabelSettings_sg1n3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="qlcambien/2"]
+
+[node name="4" type="RayCast2D" parent="qlcambien"]
+position = Vector2(16, 8)
+target_position = Vector2(-56, -48)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label" type="Label" parent="qlcambien/4"]
+offset_left = -88.0
+offset_top = -88.0
+offset_right = -24.0
+offset_bottom = -56.0
+label_settings = SubResource("LabelSettings_sg1n3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="qlcambien/4"]
+
+[node name="6" type="RayCast2D" parent="qlcambien"]
+position = Vector2(64, 8)
+target_position = Vector2(56, -48)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Label" type="Label" parent="qlcambien/6"]
+offset_left = 24.0
+offset_top = -88.0
+offset_right = 88.0
+offset_bottom = -56.0
+label_settings = SubResource("LabelSettings_sg1n3")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D" type="Line2D" parent="qlcambien/6"]
+width = 1.0
