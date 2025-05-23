@@ -457,9 +457,10 @@ public partial class Main : Control
 
 						mang_vi_tri_di_duoc.Shuffle();
 						ChongDiLai(mang_vi_tri_di_duoc);
+						o_da_di_truoc_mot_buoc = mang_vi_tri_di_duoc[0];
 						// GD.Print("mang vi tri di duoc: " + string.Join("_",mang_vi_tri_di_duoc));
 						// GD.Print("mang vi tri di duoc da chon: " + mang_vi_tri_di_duoc[0]);
-						
+
 						may_hut.Position = may_hut.vi_tri_o_huong[mang_vi_tri_di_duoc[0]];
 						offspring1_real.Add(mang_vi_tri_di_duoc[0]);
 					}
@@ -533,6 +534,7 @@ public partial class Main : Control
 
 				mang_vi_tri_di_duoc.Shuffle();
 				ChongDiLai(mang_vi_tri_di_duoc);
+				o_da_di_truoc_mot_buoc = mang_vi_tri_di_duoc[0];
 				// GD.Print("mang vi tri di duoc: " + string.Join("_",mang_vi_tri_di_duoc));
 				// GD.Print("mang vi tri di duoc da chon: " + mang_vi_tri_di_duoc[0]);
 				may_hut.Position = may_hut.vi_tri_o_huong[mang_vi_tri_di_duoc[0]];
