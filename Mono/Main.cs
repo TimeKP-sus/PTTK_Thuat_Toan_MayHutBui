@@ -298,12 +298,19 @@ public partial class Main : Control
 	public System.Collections.Generic.List<string> offspring1_real = new System.Collections.Generic.List<string> { };
 	public System.Collections.Generic.List<string> mang_o_da_di = new System.Collections.Generic.List<string> { };
 	public string o_da_di_truoc_mot_buoc = "";
+	public void ChongDiLai(Godot.Collections.Array<string> mang)
+	{
+		if (may_hut.cho_phep_di_lai && mang.Count != 1 && mang[0] == o_da_di_truoc_mot_buoc)
+		{
+			mang[0] = mang[1];
+		}
+	}
 	public void _on_timer_timeout()
 	{
 		if (dataContext.tblDuLieus.Count() % 2 == 0 && dataContext.tblDuLieus.Count() != 0 && dataContext.tblDuLieus.Count() >= 5) //
 		{
-
-			//sau khi test xong
+			
+			//sau khi test con lai xong
 			if (so_lan_di_khi_dang_lai < do_dai_offspring)
 			{
 
@@ -311,6 +318,7 @@ public partial class Main : Control
 				// GD.Print("dang lai");
 				may_hut.cho_phep_di_lai = true;
 				so_lan_di_khi_dang_lai += 1;
+				so_buoc_label.Text = so_lan_di_khi_dang_lai.ToString();
 				// GetNode<GridContainer>("NinePatchRect/GridContainer")._Ready();
 				if (may_hut.co_the_di[offspring1[0]] == true)
 				{
@@ -321,16 +329,17 @@ public partial class Main : Control
 				}
 				else
 				{
-
 					offspring1.RemoveAt(0);
 				}
-				GD.Print("so_lan_di_khi_dang_lai: " + so_lan_di_khi_dang_lai);
-				GD.Print("so_lan_di_khi_dang_lai: " + do_dai_offspring);
-
+				// GD.Print("so_lan_di_khi_dang_lai: " + so_lan_di_khi_dang_lai);
+				// GD.Print("so_lan_di_khi_dang_lai: " + do_dai_offspring);
+				//neu chua di het
 			}
 			else
 			{
-				GD.Print("so_lan_di_khi_dang_lai: " + so_lan_di_khi_dang_lai + "__" + do_dai_offspring + "that bai");
+				so_lan_di_khi_dang_lai += 1;
+				so_buoc_label.Text = so_lan_di_khi_dang_lai.ToString();
+				// GD.Print("so_lan_di_khi_dang_lai: " + so_lan_di_khi_dang_lai + "__" + do_dai_offspring + "that bai");
 				ngan_cho.Clear();
 				for (int i = 1; i <= 36; i++)
 				{
@@ -342,6 +351,7 @@ public partial class Main : Control
 						}
 					}
 				}
+				//neu con lai di het thanh cong
 				if (ngan_cho.Count == 0)
 				{
 					// Tính trọng số cho offspring1
@@ -380,6 +390,7 @@ public partial class Main : Control
 					may_hut.duoc_hanh_dong = true;
 					// _on_run_pressed();
 				}
+				//neu con lai khong di het
 				else
 				{
 					may_hut.cho_phep_di_lai = false;
@@ -396,8 +407,9 @@ public partial class Main : Control
 					//con o
 					if (mang_vi_tri_di_duoc.Count != 0)
 					{
-						///chua chac chan
-						if (offspring1_real.Count > 80)
+						
+						///qua 80 buoc
+						if (so_lan_di_khi_dang_lai > 80)
 						{
 							// Tính trọng số cho offspring1
 							foreach (var item in offspring1_real)
@@ -411,7 +423,7 @@ public partial class Main : Control
 									offspring1Weight += 1.41f;
 								}
 							}
-							GD.Print("xau con sau kiem tra: " + string.Join("_", offspring1_real));
+							// GD.Print("xau con sau kiem tra: " + string.Join("_", offspring1_real));
 							test_label.Text = "Lai ghep that bai";
 							// GD.Print("lai ghep thanh cong");
 							// Thêm offspring1 vào cơ sở dữ liệu
@@ -444,18 +456,19 @@ public partial class Main : Control
 						// GD.Print("vi_tri_di_duoc (if): " + string.Join("_", mang_vi_tri_di_duoc));
 
 						mang_vi_tri_di_duoc.Shuffle();
+						ChongDiLai(mang_vi_tri_di_duoc);
 						// GD.Print("mang vi tri di duoc: " + string.Join("_",mang_vi_tri_di_duoc));
 						// GD.Print("mang vi tri di duoc da chon: " + mang_vi_tri_di_duoc[0]);
+						
 						may_hut.Position = may_hut.vi_tri_o_huong[mang_vi_tri_di_duoc[0]];
 						offspring1_real.Add(mang_vi_tri_di_duoc[0]);
-
-
 					}
+					//neu khong con o di duoc
 					else
 					{
 						may_hut.cho_phep_di_lai = true;
 					}
-
+					
 					//.//khong di tiep sau khi lai
 					// GD.Print("so_lan_di_khi_dang_lai: " + so_lan_di_khi_dang_lai + "__" + do_dai_offspring + "that bai");
 					// foreach (var item in offspring1_real)
@@ -495,6 +508,7 @@ public partial class Main : Control
 				}
 			}
 		}
+		//duong di binh thuong
 		else
 		{
 			may_hut.cho_phep_di_lai = false;
@@ -508,7 +522,7 @@ public partial class Main : Control
 					mang_vi_tri_di_duoc.Add(huong.ToString());
 				}
 			}
-			//con o
+			//con o di duoc
 			if (mang_vi_tri_di_duoc.Count != 0)
 			{
 				// mang_vi_tri_di_duoc.Clear();
@@ -518,6 +532,7 @@ public partial class Main : Control
 				// GD.Print("vi_tri_di_duoc (if): " + string.Join("_", mang_vi_tri_di_duoc));
 
 				mang_vi_tri_di_duoc.Shuffle();
+				ChongDiLai(mang_vi_tri_di_duoc);
 				// GD.Print("mang vi tri di duoc: " + string.Join("_",mang_vi_tri_di_duoc));
 				// GD.Print("mang vi tri di duoc da chon: " + mang_vi_tri_di_duoc[0]);
 				may_hut.Position = may_hut.vi_tri_o_huong[mang_vi_tri_di_duoc[0]];
@@ -541,13 +556,13 @@ public partial class Main : Control
 
 				// GD.Print("cac o da duoc quet: " + mang_vi_tri_di_duoc.ToString());
 			}
+			//xung quanh khong co o di duoc
 			else
 			{
 				may_hut.cho_phep_di_lai = true;
 			}
 			so_buoc += 1;
 			so_buoc_label.Text = so_buoc.ToString();
-
 			text_ngan_cho.Text = string.Join("", mang_o_da_di);
 			_on_kiem_tra_o_pressed();
 		}
