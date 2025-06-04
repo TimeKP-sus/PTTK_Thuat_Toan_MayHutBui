@@ -73,7 +73,6 @@ public partial class Main : Control
 
 		test_label.Text = dataContext.tblDuLieus.Count().ToString();
 
-
 		if (dataContext.tblDuLieus.Count() % 2 == 0 && dataContext.tblDuLieus.Count() != 0 && dataContext.tblDuLieus.Count() >= 5)
 		{
 			var lay_cha_me = dataContext.tblDuLieus.Where(x => x.DaQuethet == 1)
@@ -84,12 +83,12 @@ public partial class Main : Control
 
 			// for (int index = 1; index < lay_cha_me.Count - 1; index += 2)
 			// {
-			// 	var first = lay_cha_me[index];
-			// 	var second = lay_cha_me[index + 1];
-			// 	if (first.DuongDi == second.DuongDi)
+			// 	var f1 = lay_cha_me[index];
+			// 	var f2= lay_cha_me[index + 1];
+			// 	if (f1.DuongDi == f2.DuongDi)
 			// 	{
-			// 		dataContext.Remove(first);
-			// 		dataContext.Remove(second);
+			// 		dataContext.Remove(f1);
+			// 		dataContext.Remove(f2);
 			// 	}
 			// }
 
@@ -130,8 +129,8 @@ public partial class Main : Control
 					cac_diem_cat_parent2.Add(i);
 				}
 			}
-			GD.Print("cac diem giao nhau: " + string.Join("_", cac_diem_cat_parent1));
-			GD.Print("cac diem giao nhau: " + string.Join("_", cac_diem_cat_parent2));
+			GD.Print("diem cat p1: " + string.Join("_", cac_diem_cat_parent1));
+			GD.Print("diem cat p2: " + string.Join("_", cac_diem_cat_parent2));
 
 			if (cac_diem_cat_parent1.Count > 0 && cac_diem_cat_parent2.Count > 0)
 			{
@@ -143,7 +142,7 @@ public partial class Main : Control
 
 			else
 			{
-				GD.PrintErr("No valid cutting points found.");
+				GD.PrintErr("Loi?");
 				CallDeferred(nameof(_on_reload_pressed));
 			}
 
@@ -164,13 +163,14 @@ public partial class Main : Control
 
 			// Dot bien (mutation) hung 2
 			Random random = new Random();
-			int mutationRate = 5;
+			int mutationRate = 2;
 			for (int i = 0; i < offspring1.Count; i++)
 			{
 				if (random.Next(100) < mutationRate)
 				{
+                    GD.Print("Da dot bien o vi tri: " + i.ToString());
 					// Thực hiện đột biến bằng cách thay đổi giá trị tại vị trí i
-					offspring1[i] = cac_huong[random.Next(cac_huong.Count)];
+                    offspring1[i] = cac_huong[random.Next(cac_huong.Count)];
 				}
 			}
 
@@ -333,7 +333,7 @@ public partial class Main : Control
 				}
 				// GD.Print("so_lan_di_khi_dang_lai: " + so_lan_di_khi_dang_lai);
 				// GD.Print("so_lan_di_khi_dang_lai: " + do_dai_offspring);
-				//neu chua di het
+				// neu chua di het
 			}
 			else
 			{
